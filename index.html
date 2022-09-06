@@ -4,33 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard||project</title>
-    <script src="bundle.js"></script>
-<script defer src="bundle.js"></script></head>
+    <title>Concert-page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet"
+          href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+<script defer src="runtime.bundle.js"></script><script defer src="main.bundle.js"></script></head>
 <body>
-  <div class="overall">
-    <div class="header">
-      <h1 class="header-txt">Leaderboard</h1>
-    </div>
-
-
-    <div class="mainWrapper">
-      <div class="recent-wrapper">
-        <h3 class="scores-txt">Recent scores <button type="submit" class="refbtn">Refresh</button></h3>
-        <div class="boardList">
-          
+    <div class="overall-container">
+      <header>
+        <div class="mobile-nav">
+            <a href="#" class="text-decoration-none"><img class="heading-elements" src="852d0a86762c99070334.png" width="100" height="100" alt="facebook"></a>
+            <div>
+              <a href="#" class="text-decoration-none">Login</a>
+              <a href="#" class="text-decoration-none">Register</a>
+            </div>
         </div>
-      </div>
+        <div class="search-bar">
+          <input class="search" placeholder="   Search Shows and People" type="text" name="search" id="search"> 
+          <button class="search-btn" name="button" id="button">
+                <i class="fa fa-search"></i>
+          </button>
+        </div>
+        <nav>
+          
+        </nav>
+      </header>
+        <!-- dynamic html starts here -->
 
-      <div class="add-wrapper">
-        <h3 class="add-txt">Add your score</h3>
-        <form class="form" action="oo.za" method="post">
-          <input id="inp1" class="name" type="text" placeholder="Your name">
-          <input id="inp2" class="score" type="text" placeholder="Your score">
-          <button class="sbtn" type="submit">Submit</button>
-        </form>
-      </div>
+        <!-- footer starts here -->
+        <footer class="footer">
+          <div class="left-footer">  
+            <div class="footer-one">
+                <span class="span-one">Follow us on: </span>
+                <a href="#" class="text-decoration-none"><img class="heading-elements" src="01f3fbf330ac5744ea3d.png" width="24" height="24" alt="tweeter"></a>
+                <a href="#" class="text-decoration-none"><img class="heading-elements" src="8665d57f63f10fe7f5de.jpg" width="24" height="24" alt="facebook"></a>
+                <a href="#" class="text-decoration-none"><img class="heading-elements" src="487c01c29874a2f72e20.png" width="24" height="24" alt="instagram"></a>&nbsp;&nbsp;
+                <a href="#" class="text-decoration-none"><img class="heading-elements" src="071038551db2204828c2.png" width="24" height="24" alt="reddit"></a>
+            </div>
+            <div class="footer-two">
+                <span class="span-two">© TVmaze.com</span>
+            </div>
+          </div>
+          <div class="right-footer">  
+            <div class="footer-three">
+                <a href="#" class="text-decoration-none">Features</a>
+                <a href="#" class="text-decoration-none">API</a>
+                <a href="#" class="text-decoration-none">Blog</a>
+                <a href="#" class="text-decoration-none">Request a Show</a>
+                <a href="#" class="text-decoration-none">Data Policies</a>
+            </div>
+            <div class="footer-four">
+                <a href="#" class="text-decoration-none">Copyright Policy</a>
+                <a href="#" class="text-decoration-none">Privacy Policy</a>
+                <a href="#" class="text-decoration-none">ToS</a>
+            </div>
+          </div>
+        </footer>
     </div>
-  </div>
 </body>
 </html>
