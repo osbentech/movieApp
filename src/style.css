@@ -24,6 +24,7 @@
 .search-bar {
   display: flex;
   justify-content: center;
+  padding-bottom: 5px;
 }
 
 .search {
@@ -45,6 +46,20 @@
 header {
   background-color: #272A31;
 }
+
+
+
+.card-holder{
+  display: flex;
+  flex-direction: column;
+}
+
+
+#heart {
+  width: 24px;
+  height: 24px;
+}
+
 
 
 
@@ -82,9 +97,6 @@ footer {
   /* display: flex; */
   justify-content: space-between;
   background-color: #272A31;
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100vw;
   padding: 10px 0;
 }

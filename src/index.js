@@ -15,7 +15,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const Getter = GET;
   const getterObj = new Getter();
   btn.addEventListener('click', (pressed) => {
-    console.log('working');
     getterObj.get(`https://api.tvmaze.com/search/shows?q=${input.value}`);
   });
 });
