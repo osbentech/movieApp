@@ -1,13 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+}
 
 .overall-container {
   display: flex;
   flex-direction: column;
-}
-
-.mobile-nav {
-  display: flex;
+  justify-self: center;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .mobile-nav a {
@@ -19,6 +24,11 @@
 
 .mobile-nav a:hover {
   color: #3c9ba5;
+}
+
+.separator {
+  color: white;
+  font-size: larger;
 }
 
 .search-bar {
@@ -43,31 +53,82 @@
   width: 30vw;
 }
 
-header {
-  background-color: #272A31;
+.menu-bar {
+  background-color: #3c948b;
+  display: flex;
+  justify-content: flex-end;
+  width: 100vw;
+  height: 30px;
+  align-items: center;
 }
 
+.fa-bars,
+.menu-bar span {
+  color: #fbfaf9;
+}
 
+.fa-bars:hover {
+  color: #cacaca;
+}
+
+#myLinks {
+  display: none;
+  width: 100vw;
+}
+
+#myLinks a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+  background-color: #1f4b47;
+}
+
+#myLinks a:hover {
+  background-color: #3f3f3f;
+}
+
+header {
+  background-color: #272A31;
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
 
 .card-holder{
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
+.card {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 #heart {
   width: 24px;
   height: 24px;
 }
 
-
-
+.pages {
+  padding: 15px;
+}
 
 .span-one,
 .span-two {
   font-size: larger;
   color: #fbfaf9;
   padding: 12px;
+}
+
+.span-two {
+  font-size: medium;
 }
 
 .left-footer,
@@ -101,3 +162,42 @@ footer {
   padding: 10px 0;
 }
 
+@media (min-width: 768px) {
+  .logo {
+    order: 1;
+  }
+
+  .account {
+    order: 3;
+  }
+  
+  .menu-bar {
+    display: none;
+  }
+  .search-bar {
+    width: 50vw;
+    order: 2;
+  }
+
+  #myLinks {
+    display: flex;
+    order: 4;
+    background-color: #3c948b;
+  }
+
+  #myLinks a {
+    display: inline;
+    background-color: #3c948b;
+  }
+
+  .card-holder{
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  footer {
+    display: flex;
+  }
+}

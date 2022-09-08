@@ -6,20 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concert-page</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet"
-          href=
-"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles.css">
 <script defer src="runtime.bundle.js"></script><script defer src="main.bundle.js"></script></head>
 <body>
     <div class="overall-container">
       <header>
-        <div class="mobile-nav">
-            <a href="#" class="text-decoration-none"><img class="heading-elements" src="852d0a86762c99070334.png" width="100" height="100" alt="facebook"></a>
-            <div>
-              <a href="#" class="text-decoration-none">Login</a>
-              <a href="#" class="text-decoration-none">Register</a>
-            </div>
+        <a class="logo mobile-nav text-decoration-none" href="#"><img class="heading-elements" src="852d0a86762c99070334.png" width="100" height="100" alt="facebook"></a>
+        <div class="account mobile-nav">
+          <a href="#" class="text-decoration-none">Login</a>
+          <span class="separator">|</span>
+          <a href="#" class="text-decoration-none">Register</a>
         </div>
         <div class="search-bar">
           <input class="search" placeholder="   Search Shows and People" type="text" name="search" id="search"> 
@@ -27,11 +24,23 @@
                 <i class="fa fa-search"></i>
           </button>
         </div>
-        <nav>
-          
+        <div class="menu-bar">
+            <i class="fa fa-bars"></i>&nbsp;&nbsp;
+            <span>Menu</span>&emsp;&emsp;&emsp;
+        </div>
+        <nav id="myLinks">
+            <a href="#Shows">Shows</a>
+            <a href="#People">People</a>
+            <a href="#Networks">Networks</a>
+            <a href="#Channels">Web Channels</a>
+            <a href="#Articles">Articles</a>
+            <a href="#Schedule">Schedule</a>
+            <a href="#Calendar">Calendar</a>
+            <a href="#Countdown">Countdown</a>
+            <a href="#Forums">Forums</a>
         </nav>
       </header>
-        <!-- dynamic html starts here -->
+        <!-- dynamic html inserted here -->
 
         <!-- footer starts here -->
         <footer class="footer">
