@@ -37,4 +37,5 @@ window.addEventListener('DOMContentLoaded', () => {
   next.addEventListener('click', () => {
     getterObj.getNext(`https://api.tvmaze.com/shows?page=`);
   });
+
 });
