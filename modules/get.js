@@ -25,7 +25,6 @@ export default class GET {
     dynamic_container.className = 'container';
 
     const pages = document.querySelector('.pages');
-    //  console.log(jFormat[0]);
     for (let i = 0; i < 24; i += 1) {
       dynamic_section.innerHTML += `
       <div class="card">
@@ -33,8 +32,8 @@ export default class GET {
         <img src=${jFormat[i].image.medium}>
         <div>
           <span class="name">${jFormat[i].name}</span><br>
-          <button type="submit" class="like" href="#"><i id="item${jFormat[i].id}" class="fa fa-heart"></i></button>
-          <span class="counter"></span>
+          <a type="submit" class="like" href="#"><i id="item${jFormat[i].id}" class="fa fa-heart"></i></a>
+          <span class="counter"></span><span>&emsp;&emsp;&emsp;&emsp;&emsp;</span>
           <button id="cardBtn btn${i}">Comment</button><br>
         </div>
       </div>
@@ -45,8 +44,8 @@ export default class GET {
     overall.insertBefore(dynamic_container, pages);
     dynamic_container.appendChild(dynamic_section);
     
-    this.addLikeEventListener();
-    this.updateLikeCounter(jFormat, 0);
+    this.addLikeEventListener(jFormat, 0);
+    this.initializeLikeCounter(jFormat, 0);
   }
 
   getSearch = async (url) => {
@@ -67,13 +66,15 @@ export default class GET {
         <img src=${jFormat[i].show.image.medium}>
         <div>
           <span class="name">${jFormat[i].show.name}</span><br>
-          <a class="like" href="#"><i id="item${jFormat[i].show.id}" class="fa fa-heart"></i></a>
+          <a type="submit" class="like" href="#"><i id="item${jFormat[i].show.id}" class="fa fa-heart"></i></a>
+          <span class="counter"></span><span>&emsp;&emsp;&emsp;&emsp;&emsp;</span>
           <button id="cardBtn btn${i}">Comment</button><br>
         </div>
       </div>
       `;
     }
-    this.addLikeEventListener();
+    this.addLikeEventListener(jFormat, 1);
+    this.initializeLikeCounter(jFormat, 1);
   }
 
   getPrevious = async (url) => {
@@ -94,13 +95,15 @@ export default class GET {
         <img src=${jFormat[i].image.medium}>
         <div>
           <span class="name">${jFormat[i].name}</span><br>
-          <a class="like" href="#"><i id="item${jFormat[i].id}" class="fa fa-heart"></i></a>
+          <a type="submit" class="like" href="#"><i id="item${jFormat[i].id}" class="fa fa-heart"></i></a>
+          <span class="counter"></span><span>&emsp;&emsp;&emsp;&emsp;&emsp;</span>
           <button id="cardBtn btn${i}">Comment</button><br>
         </div>
       </div>
       `;
     }
-    this.addLikeEventListener();
+    this.addLikeEventListener(jFormat, 0);
+    this.initializeLikeCounter(jFormat, 0);
   }
 
   getNext = async (url) => {
@@ -121,41 +124,82 @@ export default class GET {
         <img src=${jFormat[i].image.medium}>
         <div>
           <span class="name">${jFormat[i].name}</span><br>
-          <a class="like" href="#"><i id="item${jFormat[i].id}" class="fa fa-heart"></i></a>
+          <a type="submit" class="like" href="#"><i id="item${jFormat[i].id}" class="fa fa-heart"></i></a>
+          <span class="counter"></span><span>&emsp;&emsp;&emsp;&emsp;&emsp;</span>
           <button id="cardBtn btn${i}">Comment</button><br>
         </div>
       </div>
       `;
     }
-    this.addLikeEventListener();
+    this.addLikeEventListener(jFormat, 0);
+    this.initializeLikeCounter(jFormat, 0);
   }
 
-  addLikeEventListener = () => {
+  addLikeEventListener = async (jFormatold, bool) => {
     const Poster = POST;
     const posterObj = new Poster();
-    let index = 0;
     const like = document.querySelectorAll('.like');
     const likeArr = Array.prototype.slice.call(like);
-    likeArr.forEach(() => {
-      like[index].addEventListener('click', (e) => {
+    likeArr.forEach((_, index) => {
+      like[index].addEventListener('click', async (e) => {
         const payload = { "item_id": `${e.target.id}` };
-        posterObj.postLike(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/likes`, payload);
+        await  new Promise((resolve) => {
+          resolve(posterObj.postLike(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/likes`, payload));
+        });
+        let j = 0;
+        let old = 0;
+        if (bool) {
+          old = jFormatold[j].show.id;
+        } else {
+          old = jFormatold[j].id;
+        }
+        while (old !== Number(e.target.id.substring(4))) {
+          j += 1;
+          if (bool) {
+            old = jFormatold[j].show.id;
+          } else {
+            old = jFormatold[j].id;
+          }
+        }
+        this.updateLikeCounter(j);
       });
-      index += 1;
     });
   }
 
-  updateLikeCounter = async (jFormatold, bool) => {
+  initializeLikeCounter = async (jFormatold, bool) => {
     const fectedData = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/likes`);
     const jFormat = await fectedData.json();
-    const count = document.querySelectorAll('.counter');
-
+    const likeCounter = document.querySelectorAll('.counter');
+    let len = 0;
+    let old = 0;
+    if (bool) {
+      len = jFormatold.length;
+    } else {
+      len = 24;
+    }
     for (let i = 0; i < jFormat.length; i++) {
-      for (let j = 0; j < jFormatold.length; j++) {
-        if (jFormat[i].item_id === 'item'+jFormatold[j].id) {
-          count[j].innerHTML = jFormat[i].likes;
+      for (let j = 0; j < len; j++) {
+        if (bool) {
+          old = jFormatold[j].show.id;
+        } else {
+          old = jFormatold[j].id;
+        }
+        if (jFormat[i].item_id === 'item'+old) {
+          likeCounter[j].innerHTML = jFormat[i].likes;
+          break;
         }
       }
+    }
+  }
+
+  updateLikeCounter = (item_number) => {
+    const likeCounter = document.querySelectorAll('.counter');
+    const likeCount = likeCounter[item_number].innerHTML;
+    console.log(likeCount);
+    if(likeCount === '') {
+      likeCounter[item_number].innerHTML= '1';
+    } else {
+      likeCounter[item_number].innerHTML = Number(likeCounter[item_number].innerHTML) + 1;
     }
   }
 }

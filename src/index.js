@@ -1,6 +1,6 @@
 import './style.css';
 import Twitter from '../img/twitter.png';
-import Logo from '../img/logo.png';
+import Logo from '../img/Debby-Benjamin-Logo.png';
 import Facebook from '../img/facebook.jpg';
 import Instagram from '../img/instagram.png';
 import Reddit from '../img/reddit.png';
