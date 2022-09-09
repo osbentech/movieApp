@@ -1,4 +1,6 @@
 import POST from '../modules/post.js';
+import Popup from '../modules/popup.js';
+
 export default class GET {
   constructor() {
     this.index = 0;
@@ -34,7 +36,7 @@ export default class GET {
           <span class="name">${jFormat[i].name}</span><br>
           <a type="submit" class="like" href="#"><i id="item${jFormat[i].id}" class="fa fa-heart"></i></a>
           <span class="counter"></span><span>&emsp;&emsp;&emsp;&emsp;&emsp;</span>
-          <button id="cardBtn btn${i}">Comment</button><br>
+          <button class="popBtn" id="btn${jFormat[i].id}">Comment</button><br>
         </div>
       </div>
       `;
@@ -43,6 +45,15 @@ export default class GET {
     overall.insertBefore(dynamic_paragraph, pages);
     overall.insertBefore(dynamic_container, pages);
     dynamic_container.appendChild(dynamic_section);
+
+    const Popper = Popup;
+    const popperObj = new Popper();
+    const commmentBtn = document.querySelectorAll('.popBtn');
+    commmentBtn.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        popperObj.openModal(btn.id.substring(3));
+      });
+    });
     
     this.addLikeEventListener(jFormat, 0);
     this.initializeLikeCounter(jFormat, 0);
@@ -68,13 +79,22 @@ export default class GET {
           <span class="name">${jFormat[i].show.name}</span><br>
           <a type="submit" class="like" href="#"><i id="item${jFormat[i].show.id}" class="fa fa-heart"></i></a>
           <span class="counter"></span><span>&emsp;&emsp;&emsp;&emsp;&emsp;</span>
-          <button id="cardBtn btn${i}">Comment</button><br>
+          <button class="popBtn" id="btn${jFormat[i].show.id}">Comment</button><br>
         </div>
       </div>
       `;
     }
     this.addLikeEventListener(jFormat, 1);
     this.initializeLikeCounter(jFormat, 1);
+
+    const Popper = Popup;
+    const popperObj = new Popper();
+    const commmentBtn = document.querySelectorAll('.popBtn');
+    commmentBtn.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        popperObj.openModal(btn.id.substring(3));
+      });
+    });
   }
 
   getPrevious = async (url) => {
@@ -97,13 +117,22 @@ export default class GET {
           <span class="name">${jFormat[i].name}</span><br>
           <a type="submit" class="like" href="#"><i id="item${jFormat[i].id}" class="fa fa-heart"></i></a>
           <span class="counter"></span><span>&emsp;&emsp;&emsp;&emsp;&emsp;</span>
-          <button id="cardBtn btn${i}">Comment</button><br>
+          <button class="popBtn" id="btn${jFormat[i].id}">Comment</button><br>
         </div>
       </div>
       `;
     }
     this.addLikeEventListener(jFormat, 0);
     this.initializeLikeCounter(jFormat, 0);
+
+    const Popper = Popup;
+    const popperObj = new Popper();
+    const commmentBtn = document.querySelectorAll('.popBtn');
+    commmentBtn.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        popperObj.openModal(btn.id.substring(3));
+      });
+    });
   }
 
   getNext = async (url) => {
@@ -126,13 +155,22 @@ export default class GET {
           <span class="name">${jFormat[i].name}</span><br>
           <a type="submit" class="like" href="#"><i id="item${jFormat[i].id}" class="fa fa-heart"></i></a>
           <span class="counter"></span><span>&emsp;&emsp;&emsp;&emsp;&emsp;</span>
-          <button id="cardBtn btn${i}">Comment</button><br>
+          <button class="popBtn" id="btn${jFormat[i].id}">Comment</button><br>
         </div>
       </div>
       `;
     }
     this.addLikeEventListener(jFormat, 0);
     this.initializeLikeCounter(jFormat, 0);
+
+    const Popper = Popup;
+    const popperObj = new Popper();
+    const commmentBtn = document.querySelectorAll('.popBtn');
+    commmentBtn.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        popperObj.openModal(btn.id.substring(3));
+      });
+    });
   }
 
   addLikeEventListener = async (jFormatold, bool) => {
@@ -161,6 +199,7 @@ export default class GET {
             old = jFormatold[j].id;
           }
         }
+        console.log(jFormatold);
         this.updateLikeCounter(j);
       });
     });

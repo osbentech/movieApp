@@ -176,6 +176,34 @@ footer {
   padding: 10px 0;
 }
 
+.modalImg {
+  width: 400px;
+  height: 400px;
+}
+
+.modal {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+  margin: 10vh 10vw;
+  height: 80vh;
+}
+
+.description {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 80px;
+}
+
+#close {
+  margin-left: 30vw;
+  width: 35px;
+  text-align: center;
+  background-color: #272a31;
+  color: white;
+}
+
 @media (min-width: 768px) {
   .logo {
     order: 1;
