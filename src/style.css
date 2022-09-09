@@ -177,15 +177,13 @@ footer {
 }
 
 .modalImg {
-  width: 400px;
-  height: 400px;
+  width: 40vw;
+  height: 40vh;
 }
 
 .modal {
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 100px;
+  padding: 0 3vw;
   margin: 10vh 10vw;
   height: 80vh;
 }
@@ -202,6 +200,11 @@ footer {
   text-align: center;
   background-color: #272a31;
   color: white;
+  margin-right: -3vw;
+}
+
+.wrapper {
+  flex-direction: column;
 }
 
 @media (min-width: 768px) {
@@ -241,5 +244,14 @@ footer {
 
   footer {
     display: flex;
+  }
+
+  .wrapper {
+    flex-direction: row;
+  }
+
+  .modalImg {
+    width: 20vw;
+    height: 40vh;
   }
 }

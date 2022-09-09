@@ -61,12 +61,14 @@ export default class Popup {
       }
 
       sectionModal.innerHTML += `
-      <div class="d-flex gap-5">
+      <div class="d-flex justify-content-end">
+        <button id="close">&times;</button> 
+      </div> 
+      <div class="wrapper d-flex gap-5">
         <div>
           <img class="modalImg" src="${detail[0]}"/>
         </div>
         <div>
-          <button id="close">&times;</button>
           <h1>${detail[1]}</h1>
           <div class="description">
             <div>
