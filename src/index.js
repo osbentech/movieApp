@@ -11,13 +11,12 @@ import MENU from '../modules/menu.js';
 const btn = document.querySelector('.search-btn');
 const bars = document.querySelector('.fa-bars');
 const input = document.querySelector('.search');
-const bod = document.querySelector('body');
 
 window.addEventListener('DOMContentLoaded', () => {
   const Getter = GET;
   const getterObj = new Getter();
 
-  getterObj.getHome();
+  getterObj.getHome(`https://api.tvmaze.com/shows?page=0`);
 
   btn.addEventListener('click', () => {
     getterObj.getSearch(`https://api.tvmaze.com/search/shows?q=${input.value}`);
@@ -27,5 +26,15 @@ window.addEventListener('DOMContentLoaded', () => {
   const menuObj = new Menu();
   bars.addEventListener('click', () => {
     menuObj.toggleMenu();
+  });
+
+  const prev = document.querySelector('.previous');
+  prev.addEventListener('click', () => {
+    getterObj.getPrevious(`https://api.tvmaze.com/shows?page=`);
+  });
+
+  const next = document.querySelector('.next');
+  next.addEventListener('click', () => {
+    getterObj.getNext(`https://api.tvmaze.com/shows?page=`);
   });
 });

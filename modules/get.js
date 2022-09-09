@@ -3,12 +3,14 @@ export default class GET {
     this.index = 0;
   }
 
-  getHome = async () => {
-    // const fectedData = await fetch(url);
-    // const jFormat = await fectedData.json();
-    const footer = document.querySelector('footer');
+  getHome = async (url) => {
+    const fectedData = await fetch(url);
+    const jFormat = await fectedData.json();
     const overall = document.querySelector('.overall-container');
-    
+    if (this.index === 0) {
+      const prev = document.querySelector('.previous');
+      prev.disabled = true;
+    }
     const dynamic_section = document.createElement('section');
     dynamic_section.id = 'card-holder';
     dynamic_section.className = 'card-holder';
@@ -17,27 +19,30 @@ export default class GET {
     dynamic_paragraph.id = 'information';
     dynamic_paragraph.className = 'information';
 
-    const dynamic_pages = document.createElement('div');
-    dynamic_pages.id = 'pages';
-    dynamic_pages.className = 'pages';
-
-    // for (let i = 0; i < jFormat.length; i += 1) {
-    //   dynamic_section.innerHTML += `
-    //   <img src=${jFormat[i].show.image.medium}>
-    //   <span>${jFormat[i].show.name}</span>
-    //   <i id="heart${i}" class="fa fa-heart"></i>
-    //   <button id="btn${i}">Comment</button>
-    //   `;
-    // }
+    const pages = document.querySelector('.pages');
+   console.log(jFormat[0]);
+    for (let i = 0; i < 20; i += 1) {
+      dynamic_section.innerHTML += `
+      <div class="card">
+        <br>
+        <img src=${jFormat[i].image.medium}>
+        <div>
+          <span class="name">${jFormat[i].name}</span><br>
+          <i id="heart${i}" class="fa fa-heart"></i>
+          <button id="cardBtn btn${i}">Comment</button><br>
+        </div>
+      </div>
+      `;
+    }
     
-    overall.insertBefore(dynamic_paragraph, footer);
-    overall.insertBefore(dynamic_section, footer);
-    overall.insertBefore(dynamic_pages, footer);
+    overall.insertBefore(dynamic_paragraph, pages);
+    overall.insertBefore(dynamic_section, pages);
   }
 
   getSearch = async (url) => {
     const fectedData = await fetch(url);
     const jFormat = await fectedData.json();
+    console.log(jFormat);
     const dynamic_section = document.querySelector('.card-holder');
     const dynamic_paragraph = document.querySelector('.information');
     const pages = document.querySelector('.pages');
@@ -58,15 +63,57 @@ export default class GET {
       </div>
       `;
     }
-    pages.innerHTML += `
-      <button class="previous">
-        <i class='fa fa-arrow-left'></i>
-        Previous
-      </button>
-      <button class="next">
-        Next
-        <i class='fa fa-arrow-right'></i>
-      </button>
-    `;
+  }
+
+  getPrevious = async (url) => {
+    this.index -= 1;
+    if (this.index === 0) {
+      const prev = document.querySelector('.previous');
+      prev.disabled = true;
+    }
+    const fectedData = await fetch(url + this.index);
+    const jFormat = await fectedData.json();
+    const dynamic_section = document.querySelector('.card-holder');
+    dynamic_section.innerHTML = '';
+
+    for (let i = 0; i < 20; i += 1) {
+      dynamic_section.innerHTML += `
+      <div class="card">
+        <br>
+        <img src=${jFormat[i].image.medium}>
+        <div>
+          <span class="name">${jFormat[i].name}</span><br>
+          <i id="heart${i}" class="fa fa-heart"></i>
+          <button id="cardBtn btn${i}">Comment</button><br>
+        </div>
+      </div>
+      `;
+    }
+  }
+
+  getNext = async (url) => {
+    this.index += 1;
+    if (this.index !== 0) {
+      const prev = document.querySelector('.previous');
+      prev.disabled = false;
+    }
+    const fectedData = await fetch(url + this.index);
+    const jFormat = await fectedData.json();
+    const dynamic_section = document.querySelector('.card-holder');
+    dynamic_section.innerHTML = '';
+    console.log(jFormat);
+    for (let i = 0; i < 20; i += 1) {
+      dynamic_section.innerHTML += `
+      <div class="card">
+        <br>
+        <img src=${jFormat[i].image.medium}>
+        <div>
+          <span class="name">${jFormat[i].name}</span><br>
+          <i id="heart${i}" class="fa fa-heart"></i>
+          <button id="cardBtn btn${i}">Comment</button><br>
+        </div>
+      </div>
+      `;
+    }
   }
 }
