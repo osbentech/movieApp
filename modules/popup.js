@@ -109,9 +109,10 @@ export default class Popup {
         // container.style.webkitFilter = 'blur(2px)';
       //   document.addEventListener('DOMContentLoaded', async () => {
 
-      const modalWindow = document.body.querySelector('.modal');
+    //   let modalWindow = document.body.querySelector('.modal');
+      console.log(this.sectionModal);
       if (this.index === 0) {
-       modalWindow.addEventListener('click', (e) => {
+        this.sectionModal.addEventListener('click', (e) => {
         if (e.target.classList.contains('combtn')) {
             const payload = {
                             "item_id": `item${e.target.id}`,
@@ -131,7 +132,7 @@ export default class Popup {
             );
         }
       });
-      modalWindow.addEventListener('click', (e) => {
+      this.sectionModal.addEventListener('click', (e) => {
         if (e.target.classList.contains('close')) {
             console.log('closing modal');
             this.sectionModal.classList.remove('open');
@@ -162,21 +163,8 @@ export default class Popup {
         }
       }
     }
+    
+    updateComments = async () => {
 
-    // postComments = async (id) => {
-    //   const payload = {"item_id": `item${id}`,
-    //                    'username': document.getElementById('input').value,
-    //                    'comment':  document.getElementById('comt').value
-    //                   };
-    //   fetch(
-    //     'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/comments', 
-    //     {
-    //       headers: {
-    //         'Content-type': 'application/json; charset=UTF-8',
-    //       },
-    //       method: 'POST',
-    //       body: JSON.stringify(payload),
-    //     },
-    //   );
-    // }
+    }
 }

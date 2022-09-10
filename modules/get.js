@@ -1,5 +1,6 @@
 import POST from '../modules/post.js';
 import Popup from '../modules/popup.js';
+import NO_IMG from '../img/No-Image-Placeholder.png'
 
 export default class GET {
   constructor() {
@@ -71,15 +72,33 @@ export default class GET {
     dynamic_paragraph.innerHTML = "<em><br>&nbsp;&nbsp;&nbsp;&nbsp;Search results for: " + url.split('=')[1] +" ("+jFormat.length+")</em>";
 
     for (let i = 0; i < jFormat.length; i += 1) {
+      const detail = new Array(3);
+      if (jFormat[i].show.image === null) {
+        detail[0] = `${NO_IMG}`;
+      } else {
+        detail[0] = jFormat[i].show.image.medium;
+      }
+      if (jFormat[i].show.name === null) {
+        detail[1] = 'N/A';
+      } else {
+        detail[1] = jFormat[i].show.name;
+      }
+      if (jFormat[i].show.id === null) {
+        detail[2] = 'N/A';
+      } else {
+        detail[2] = jFormat[i].show.id;
+      }
+
+
       dynamic_section.innerHTML += `
       <div class="card">
         <br>
-        <img src=${jFormat[i].show.image.medium}>
+        <img src='${detail[0]}'>
         <div>
-          <span class="name">${jFormat[i].show.name}</span><br>
-          <a type="submit" class="like" href="#"><i id="item${jFormat[i].show.id}" class="fa fa-heart"></i></a>
+          <span class="name">${detail[1]}</span><br>
+          <a type="submit" class="like" href="#"><i id="item${detail[2]}" class="fa fa-heart"></i></a>
           <span class="counter"></span><span>&emsp;&emsp;&emsp;&emsp;&emsp;</span>
-          <button class="popBtn" id="btn${jFormat[i].show.id}">Comment</button><br>
+          <button class="popBtn" id="btn${detail[2]}">Comment</button><br>
         </div>
       </div>
       `;
