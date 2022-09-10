@@ -46,9 +46,9 @@ export default class GET {
     overall.insertBefore(dynamic_container, pages);
     dynamic_container.appendChild(dynamic_section);
 
-    const Popper = Popup;
-    const popperObj = new Popper();
-    const commmentBtn = document.querySelectorAll('.popBtn');
+    let Popper = Popup;
+    let popperObj = new Popper();
+    let commmentBtn = document.querySelectorAll('.popBtn');
     commmentBtn.forEach((btn) => {
       btn.addEventListener('click', () => {
         popperObj.openModal(btn.id.substring(3));
@@ -87,9 +87,9 @@ export default class GET {
     this.addLikeEventListener(jFormat, 1);
     this.initializeLikeCounter(jFormat, 1);
 
-    const Popper = Popup;
-    const popperObj = new Popper();
-    const commmentBtn = document.querySelectorAll('.popBtn');
+    let Popper = Popup;
+    let popperObj = new Popper();
+    let commmentBtn = document.querySelectorAll('.popBtn');
     commmentBtn.forEach((btn) => {
       btn.addEventListener('click', () => {
         popperObj.openModal(btn.id.substring(3));
@@ -125,9 +125,9 @@ export default class GET {
     this.addLikeEventListener(jFormat, 0);
     this.initializeLikeCounter(jFormat, 0);
 
-    const Popper = Popup;
-    const popperObj = new Popper();
-    const commmentBtn = document.querySelectorAll('.popBtn');
+    let Popper = Popup;
+    let popperObj = new Popper();
+    let commmentBtn = document.querySelectorAll('.popBtn');
     commmentBtn.forEach((btn) => {
       btn.addEventListener('click', () => {
         popperObj.openModal(btn.id.substring(3));
@@ -163,9 +163,9 @@ export default class GET {
     this.addLikeEventListener(jFormat, 0);
     this.initializeLikeCounter(jFormat, 0);
 
-    const Popper = Popup;
-    const popperObj = new Popper();
-    const commmentBtn = document.querySelectorAll('.popBtn');
+    let Popper = Popup;
+    let popperObj = new Popper();
+    let commmentBtn = document.querySelectorAll('.popBtn');
     commmentBtn.forEach((btn) => {
       btn.addEventListener('click', () => {
         popperObj.openModal(btn.id.substring(3));
