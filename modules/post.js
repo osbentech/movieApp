@@ -5,7 +5,7 @@ export default class POST {
 
   postLike = async (url, payload) => {
     fetch(
-      url, 
+      url,
       {
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
@@ -14,5 +14,5 @@ export default class POST {
         body: JSON.stringify(payload),
       },
     );
- }
+  }
 }

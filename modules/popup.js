@@ -1,23 +1,21 @@
 export default class Popup {
-    constructor() {
-      this.index = 0;
-      this.sectionModal = document.createElement('section');
-      this.sectionModal.id = 'modal';
-      this.sectionModal.className = 'modal';
-    }
+  constructor() {
+    this.index = 0;
+    this.sectionModal = document.createElement('section');
+    this.sectionModal.id = 'modal';
+    this.sectionModal.className = 'modal';
+  }
 
     closeModal = () => {
-      let sectionModal = document.querySelector('.modal');
-    //   let container = document.querySelector('body');
+      const sectionModal = document.querySelector('.modal');
       sectionModal.style.display = 'none';
       sectionModal.classList.remove('open');
-        // container.style.webkitFilter = 'blur(0)';
     }
 
     openModal = async (id) => {
-      const fectedData = await fetch('https://api.tvmaze.com/shows/'+id);
+      const fectedData = await fetch(`https://api.tvmaze.com/shows/${id}`);
       const jFormat = await fectedData.json();
-      
+
       const detail = new Array(10);
       if (jFormat.image === null) {
         detail[0] = 'N/A';
@@ -84,11 +82,11 @@ export default class Popup {
         </div>
       </div>
         `;
-        this.sectionModal.innerHTML += `<p><b>Genres</b>:`;
-          for (let i = 0; i < jFormat.genres.length; i += 1) {
-            this.sectionModal.innerHTML += `${jFormat.genres[i]}, `;
-          }
-        this.sectionModal.innerHTML += `<p><b>Summary</b>: ${jFormat.summary}</p>`;
+      this.sectionModal.innerHTML += '<p><b>Genres</b>:';
+      for (let i = 0; i < jFormat.genres.length; i += 1) {
+        this.sectionModal.innerHTML += `${jFormat.genres[i]}, `;
+      }
+      this.sectionModal.innerHTML += `<p><b>Summary</b>: ${jFormat.summary}</p>`;
       this.getComments(this.sectionModal, id);
       this.sectionModal.innerHTML += ` <h2>Add a comment</h2>
       <form>
@@ -97,58 +95,50 @@ export default class Popup {
         <button id="${id}" class="combtn" type="button">Comment</button><br><br>
       </form>
       `;
-      
-    //   let container = document.querySelector('body');
+
       document.body.appendChild(this.sectionModal);
       this.sectionModal.getBoundingClientRect();
       this.sectionModal.style.display = 'flex';
       this.sectionModal.style.backgroundColor = 'lightgray';
       this.sectionModal.style.width = '80vw';
       this.sectionModal.classList.add('open');
-      //   sectionModal.style.visibility = true;
-        // container.style.webkitFilter = 'blur(2px)';
-      //   document.addEventListener('DOMContentLoaded', async () => {
 
-    //   let modalWindow = document.body.querySelector('.modal');
-      console.log(this.sectionModal);
       if (this.index === 0) {
         this.sectionModal.addEventListener('click', (e) => {
-        if (e.target.classList.contains('combtn')) {
+          if (e.target.classList.contains('combtn')) {
             const payload = {
-                            "item_id": `item${e.target.id}`,
-                            "username": document.getElementById('input').value,
-                            "comment":  document.getElementById('comt').value
-                        };
-                      console.log(payload);
+              item_id: `item${e.target.id}`,
+              username: document.getElementById('input').value,
+              comment: document.getElementById('comt').value,
+            };
             fetch(
-                'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/comments', 
-                {
-                    headers: {
-                     'Content-type': 'application/json; charset=UTF-8',
-                    },
-                    method: 'POST',
-                    body: JSON.stringify(payload),
+              'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/comments',
+              {
+                headers: {
+                  'Content-type': 'application/json; charset=UTF-8',
                 },
+                method: 'POST',
+                body: JSON.stringify(payload),
+              },
             );
             this.updateComments(id, document.getElementById('input').value, document.getElementById('comt').value);
-        }
-      });
-      this.sectionModal.addEventListener('click', (e) => {
-        if (e.target.classList.contains('close')) {
-            console.log('closing modal');
+          }
+        });
+        this.sectionModal.addEventListener('click', (e) => {
+          if (e.target.classList.contains('close')) {
             this.sectionModal.classList.remove('open');
             this.sectionModal.style.display = 'none';
-            this.sectionModal.innerHTML = "";
-        } 
-      });
-      this.index += 1;
-     }
+            this.sectionModal.innerHTML = '';
+          }
+        });
+        this.index += 1;
+      }
     }
 
     getComments = async (element, id) => {
-      const fectedData = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/comments?item_id=item'+id);
+      const fectedData = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/comments?item_id=item${id}`);
       let count = 0;
-      if (!fectedData.ok) { 
+      if (!fectedData.ok) {
         element.innerHTML += ` <h2 class="comments-header">Comments (${count})</h2>`;
         throw new Error(`status code ${fectedData.status}`);
       } else {
@@ -160,22 +150,22 @@ export default class Popup {
         for (let i = 0; i < jFormat.length; i += 1) {
           element.innerHTML += ` 
           <p>${jFormat[i].creation_date} ${jFormat[i].username}: ${jFormat[i].comment}</p>
-          `
+          `;
         }
       }
     }
-    
+
     updateComments = async (id, user, comment) => {
-      let update = document.querySelector('.comments-header');
-      update.textContent = `Comments (${ Number(update.textContent.substring(10).replace(')', '')) + 1})`;
-      const fectedData = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/comments?item_id=item'+id);
+      const update = document.querySelector('.comments-header');
+      update.textContent = `Comments (${Number(update.textContent.substring(10).replace(')', '')) + 1})`;
+      const fectedData = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/comments?item_id=item${id}`);
       const jFormat = await fectedData.json();
       let date = '2022-09-10';
-      if (jFormat.length-1 >= 0) {
-        date = jFormat[jFormat.length-1].creation_date;
-      } 
+      if (jFormat.length - 1 >= 0) {
+        date = jFormat[jFormat.length - 1].creation_date;
+      }
       this.sectionModal.innerHTML += ` 
       <p>${date} ${user}: ${comment} </p>
-      `
+      `;
     }
 }
