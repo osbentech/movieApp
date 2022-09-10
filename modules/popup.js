@@ -102,6 +102,47 @@ export default class Popup {
     //   htmlbody.style.webkitFilter = 'blur(2px)';
       let close = document.querySelector('#close');
       close.addEventListener('click', this.closeModal);
+      this.getComments(sectionModal, id);
+      this.postComments(sectionModal, id);
     }
 
+    getComments = async (element, id) => {
+      const fectedData = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/comments?item_id=item'+id);
+      const jFormat = await fectedData.json();
+      let count = 0;
+      if (jFormat.length !== undefined) {
+        count = jFormat.length;
+      }
+      element.innerHTML += ` <h2>Comments (${count})</h2>
+      `;
+      for (let i = 0; i < jFormat.length; i += 1) {
+        element.innerHTML += ` 
+        <p>${jFormat[i].creation_date} ${jFormat[i].username}: ${jFormat[i].comment}</p>
+        `
+      }
+    }
+
+    postComments = async (element, id) => {
+      element.innerHTML += ` <h2>Add a comment</h2>
+      <form>
+        <input id="input" type="text" placeholder="Your name">
+        <textarea id="comt" placeholder="Your insights"></textarea>
+        <button class="combtn" type="submit">Comment</button>
+      </form>
+      `;
+      const payload = {"item_id": `item${id}`,
+                       'username': document.getElementById('input').value,
+                       'comment':  document.getElementById('comt').value
+                      };
+      fetch(
+        'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/comments', 
+        {
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+          method: 'POST',
+          body: JSON.stringify(payload),
+        },
+      );
+    }
 }
