@@ -52,6 +52,9 @@
 
 - Click [here](https://osbentech.github.io/kanban-board-setup/) to get started with a live demo
 
+## Presentation Link
+- Click [here](https://youtu.be/1245cqU1G6o) to see our presentation of the project.
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
