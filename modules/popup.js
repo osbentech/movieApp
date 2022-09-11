@@ -130,6 +130,7 @@ export default class Popup {
                     body: JSON.stringify(payload),
                 },
             );
+            this.updateComments(id, document.getElementById('input').value, document.getElementById('comt').value);
         }
       });
       this.sectionModal.addEventListener('click', (e) => {
@@ -148,14 +149,14 @@ export default class Popup {
       const fectedData = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/comments?item_id=item'+id);
       let count = 0;
       if (!fectedData.ok) { 
-        element.innerHTML += ` <h2>Comments (${count})</h2>`;
+        element.innerHTML += ` <h2 class="comments-header">Comments (${count})</h2>`;
         throw new Error(`status code ${fectedData.status}`);
       } else {
         const jFormat = await fectedData.json();
         if (jFormat.length !== undefined) {
           count = jFormat.length;
         }
-        element.innerHTML += ` <h2>Comments (${count})</h2>`;
+        element.innerHTML += ` <h2 class="comments-header" >Comments (${count})</h2>`;
         for (let i = 0; i < jFormat.length; i += 1) {
           element.innerHTML += ` 
           <p>${jFormat[i].creation_date} ${jFormat[i].username}: ${jFormat[i].comment}</p>
@@ -164,7 +165,17 @@ export default class Popup {
       }
     }
     
-    updateComments = async () => {
-
+    updateComments = async (id, user, comment) => {
+      let update = document.querySelector('.comments-header');
+      update.textContent = `Comments (${ Number(update.textContent.substring(10).replace(')', '')) + 1})`;
+      const fectedData = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Nf8mEtKRhZMSeyST7atx/comments?item_id=item'+id);
+      const jFormat = await fectedData.json();
+      let date = '2022-09-10';
+      if (jFormat.length-1 >= 0) {
+        date = jFormat[jFormat.length-1].creation_date;
+      } 
+      this.sectionModal.innerHTML += ` 
+      <p>${date} ${user}: ${comment} </p>
+      `
     }
 }
