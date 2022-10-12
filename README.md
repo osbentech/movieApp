@@ -50,7 +50,7 @@
 
 ## Live Demo
 
-- Click [here](https://osbentech.github.io/kanban-board-setup/) to get started with a live demo
+- Click [here](https://osbentech.github.io/movieApp/) to get started with a live demo
 
 ## Presentation Link
 - Click [here](https://youtu.be/AwiH6qsOOnQ) to see our presentation of the project.
@@ -59,7 +59,7 @@
 ## Getting Started
 
 **Instructions on how to access my project locally:** 
-- Enter this url: [https://github.com/osbentech/kanban-board-setup/](https://github.com/osbentech/kanban-board-setup/) in your web browser.
+- Enter this url: https://github.com/osbentech/movieApp.git](https://github.com/osbentech/movieApp.git) in your web browser.
 - Clone it to your local machine.
 - Once the download is complete you will be able to access my project locally . 
 
@@ -136,7 +136,7 @@ Don't forget to give the project a ⭐️! Thanks again!
 
 - GitHub: [@githubhandle](https://github.com/osbentech)
 - Twitter: [@twitterhandle](https://twitter.com/EjikeOsegbo)
-- LinkedIn: [LinkedIn](www.linkedin.com/in/benjamin-ejike-632248206)
+- LinkedIn: [LinkedIn](www.linkedin.com/in/benejike)
 
 
 ## Acknowledgments
